@@ -147,6 +147,6 @@ public class GameOfLifePinningTest {
 		Cell tmpAlive = new Cell(true);
 		Cell tmpDead = new Cell(false);
 		assertEquals(tmpAlive.toString(), "X");
-		asssertEquals(tmpDead.toString(), ".");
+		assertEquals(tmpDead.toString(), ".");
 	}
 }
