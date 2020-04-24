@@ -103,6 +103,14 @@ public class GameOfLifePinningTest {
 	}
 
 	/* TODO: Write the three pinning unit tests for the three optimized methods */
+	
+	/**
+	 * Test for MainPanel.calculateNextIteration()
+	 * Prerequisites: Vertical pattern initiated with mock cells in the main panel
+	 * 		  Set local cells array into horizontal configuration
+	 * Execution Steps: Call main panel calculate next iteration
+	 * Postconditions: Cell array from main panel and local equal each other
+	 */
 	@Test
 	public void testCalculateNextIteration() {
 		when(cells[1][2].getAlive()).thenReturn(false);
@@ -113,21 +121,32 @@ public class GameOfLifePinningTest {
 		Cell[][] tmp = mainPanel.getCells();
 		assertArrayEquals(tmp, cells);
 	}
+	/**
+	 * A test for MainPanel.iterateCell()
+	 * Preconditions: Vertical pattern initiated with mock cells in the main panel
+	 * Execution Steps: Call iterate cell on every cell that is expected to change.
+	 * Postconditions: Cells 1,2 and 3,2 turn false, and 2,1/2,2/2,3 are true
+	 */
 	@Test
 	public void testIterateCell() {
-		assertEquals(mainPanel.iterateCell(1, 2), "false");
-		assertEquals(mainPanel.iterateCell(3, 2), "false");
-		assertEquals(mainPanel.iterateCell(2, 1), "true");
-		assertEquals(mainPanel.iterateCell(2, 2), "true");
-		assertEquals(mainPanel.iterateCell(2, 3), "true");
+		assertEquals(mainPanel.iterateCell(1, 2), false);
+		assertEquals(mainPanel.iterateCell(3, 2), false);
+		assertEquals(mainPanel.iterateCell(2, 1), true);
+		assertEquals(mainPanel.iterateCell(2, 2), true);
+		assertEquals(mainPanel.iterateCell(2, 3), true);
 		
 	}
+	/**
+	 * A test for Cell.toString()
+	 * Preconditions: Initiate 2 Cells, one alive and one dead
+	 * Execution Steps: Call toString() on both cells
+	 * Post Conditions: The alive cell returns "X" and the dead cell returns "."
+	 */
 	@Test
 	public void testCellToString() {
-		Cell tmp = mock(Cell.class);
-		when(tmp.getText()).thenReturn("X");
-		assertEquals(tmp.toString(), "X");
-		when(tmp.getText()).thenReturn("");
-		assertEquals(tmp.toString(), ".");
+		Cell tmpAlive = new Cell(true);
+		Cell tmpDead = new Cell(false);
+		assertEquals(tmpAlive.toString(), "X");
+		asssertEquals(tmpDead.toString(), ".");
 	}
 }
